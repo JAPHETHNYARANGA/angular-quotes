@@ -1,0 +1,22 @@
+<div class="row">
+  <div class="col-md-6">
+    <div *ngFor="let project of projects; let i = index">
+      <h1>{{ project.title }}</h1>
+      <p>{{ project.description }}</p>
+      <a (click)="showDetails(i)" class="btn btn-sm btn-block btn-success"
+        >Show Project Details</a
+      >
+      <app-project-details
+        *ngIf="project.showProjectDetails"
+        [project]="project"
+        (deleteProject)="deleteThisProject($event, i)"
+      ></app-project-details>
+    </div>
+    <div *ngIf="projects.length < 1" class="alert alert-warning">
+      No Projects in Archive
+    </div>
+  </div>
+  <div class="col-md-6">
+    <app-contact></app-contact>
+  </div>
+</div>
